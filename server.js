@@ -1900,7 +1900,18 @@ app.get('/user/:email', async (req, res) => {
   }
 });
 
+app.post('/api/check/nme', async (req, res) => {
+  const { name } = req.body;
+  
+  // Check if the email exists in the database
+  const user = await UserinfoModel.findOne({ name });
 
+  if (user) {
+    res.status(200).json({Status : 'OK'});
+  } else {
+    res.status(200).json({Status : 'BAD'});
+  }
+});
 
 app.post('/api/check-email', async (req, res) => {
   const { email } = req.body;
