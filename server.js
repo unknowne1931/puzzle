@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: ['http://localhost:3000'],
+  origin: ['https://stawro.com'],
   methods: ['GET', 'POST', 'PUT'],
   credentials: true
 }));
@@ -151,6 +151,7 @@ app.post('/data', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   DataModel.find({})
   .then(datas => res.json(datas))
   .catch(err => res.json(err))
